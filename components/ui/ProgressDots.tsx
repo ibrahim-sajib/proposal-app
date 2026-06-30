@@ -28,7 +28,7 @@ export function ProgressDots({ total, current, className }: ProgressDotsProps) {
           }}
           className={cn(
             "h-2.5 w-2.5 rounded-full",
-            i <= current ? "bg-rose-500" : "bg-plum-300"
+            i <= current ? "bg-[#ff003c] shadow-[0_0_8px_#ff3366]" : "bg-white/20"
           )}
         />
       ))}

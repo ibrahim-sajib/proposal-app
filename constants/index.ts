@@ -35,8 +35,14 @@ export const FOOD_OPTIONS: FoodOption[] = [
 
 export const HEART_EMOJIS = ["❤️", "💖", "💗", "💕", "💓", "💞"];
 
+export const SENDER_NAME = "Sajib";
+export const RECEIVER_NAME = "Maisha";
+
 export const STEP_ORDER = [
-  "landing",
+  "task1",
+  "longMessage",
+  "task2",
+  "proposal",
   "date",
   "place",
   "food",
@@ -46,6 +52,10 @@ export const STEP_ORDER = [
 ] as const;
 
 export const STEP_TITLES: Record<string, string> = {
+  task1: "Heart Game",
+  longMessage: "A Letter For You",
+  task2: "Fill My Heart",
+  proposal: "A Big Question",
   date: "When are we going? ❤️",
   place: "Where shall we go?",
   food: "What should we eat?",

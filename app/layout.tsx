@@ -29,8 +29,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${playfair.variable} ${nunito.variable}`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${playfair.variable} ${nunito.variable}`} suppressHydrationWarning>{children}</body>
     </html>
   );
 }

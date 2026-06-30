@@ -27,15 +27,25 @@ export function TimeStep({ value, onChange, onBack, onNext }: TimeStepProps) {
         <motion.label
           htmlFor="time-picker"
           whileHover={{ scale: 1.02 }}
-          className="flex w-full max-w-sm cursor-pointer flex-col items-center gap-3 rounded-3xl border-2 border-dashed border-rose-300 bg-white/60 p-6 text-center transition-colors hover:border-rose-400"
+          className="flex w-full max-w-sm cursor-pointer flex-col items-center gap-3 rounded-3xl border-2 border-dashed border-[#ff3366]/40 bg-white/5 p-6 text-center transition-colors hover:border-[#ff3366]"
         >
-          <Clock className="h-10 w-10 text-rose-500" />
+          <Clock className="h-10 w-10 text-[#ff3366]" />
           <input
             id="time-picker"
             type="time"
             value={value ?? ""}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full rounded-xl border border-rose-200 bg-white px-4 py-3 text-center text-lg font-semibold text-plum-600 outline-none focus:border-rose-400"
+            onClick={(e) => {
+              try {
+                e.currentTarget.showPicker();
+              } catch (err) {}
+            }}
+            onFocus={(e) => {
+              try {
+                e.currentTarget.showPicker();
+              } catch (err) {}
+            }}
+            className="w-full rounded-xl border border-white/20 bg-black/40 px-4 py-3 text-center text-lg font-semibold text-white outline-none focus:border-[#ff3366]"
             aria-label="Select meeting time"
           />
         </motion.label>
@@ -48,8 +58,8 @@ export function TimeStep({ value, onChange, onBack, onNext }: TimeStepProps) {
               onClick={() => onChange(t)}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                 value === t
-                  ? "bg-rose-500 text-white shadow-glow"
-                  : "bg-white/70 text-plum-500 hover:bg-rose-100"
+                  ? "bg-[#ff003c] text-white shadow-[0_0_15px_#ff3366]"
+                  : "bg-white/10 text-white/80 hover:bg-white/20"
               }`}
             >
               {formatFriendlyTime(t)}
@@ -62,7 +72,7 @@ export function TimeStep({ value, onChange, onBack, onNext }: TimeStepProps) {
             key={value}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="font-display text-lg font-semibold text-rose-600 sm:text-xl"
+            className="font-display text-lg font-semibold text-[#ffd700] sm:text-xl drop-shadow-[0_0_8px_rgba(255,215,0,0.4)]"
           >
             {formatFriendlyTime(value)} ⏰
           </motion.p>

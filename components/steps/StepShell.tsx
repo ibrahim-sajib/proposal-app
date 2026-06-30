@@ -21,9 +21,7 @@ export function StepShell({
   children,
 }: StepShellProps) {
   return (
-    <div className="relative flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden bg-blush-radial px-4 py-12 sm:px-6">
-      <FloatingHearts count={8} />
-
+    <div className="relative flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden px-4 py-12 sm:px-6 bg-transparent">
       <motion.div
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,11 +32,11 @@ export function StepShell({
         <ProgressDots total={totalSteps} current={stepIndex} className="mb-6" />
 
         <div className="glass-card rounded-5xl p-6 sm:p-10">
-          <h2 className="font-display text-2xl font-bold text-plum-600 sm:text-3xl md:text-4xl">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-2 text-sm text-plum-400 sm:text-base">{subtitle}</p>
+            <p className="mt-2 text-sm text-white/60 sm:text-base">{subtitle}</p>
           )}
 
           <div className="mt-8">{children}</div>

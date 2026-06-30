@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LandingScreen } from "@/components/landing/LandingScreen";
+import { Task1CatchHearts } from "@/components/steps/Task1CatchHearts";
+import { LongMessageStep } from "@/components/steps/LongMessageStep";
+import { Task2TapHeart } from "@/components/steps/Task2TapHeart";
+import { ProposalStep } from "@/components/steps/ProposalStep";
 import { DateStep } from "@/components/steps/DateStep";
 import { PlaceStep } from "@/components/steps/PlaceStep";
 import { FoodStep } from "@/components/steps/FoodStep";
@@ -10,7 +13,7 @@ import { TimeStep } from "@/components/steps/TimeStep";
 import { SummaryStep } from "@/components/steps/SummaryStep";
 import { ConfirmationScreen } from "@/components/steps/ConfirmationScreen";
 import { ConfettiBurst } from "@/components/effects/ConfettiBurst";
-import { HeartExplosion } from "@/components/effects/HeartExplosion";
+import { RomanticCanvas } from "@/components/effects/RomanticCanvas";
 import { SettingsBar } from "@/components/ui/SettingsBar";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { useBackgroundMusic } from "@/hooks/useBackgroundMusic";
@@ -25,10 +28,12 @@ const INITIAL_ANSWERS: DateAnswers = {
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [step, setStep] = useState<FlowStep>("landing");
+  const [step, setStep] = useState<FlowStep>("task1");
   const [answers, setAnswers] = useState<DateAnswers>(INITIAL_ANSWERS);
   const [confettiTrigger, setConfettiTrigger] = useState(0);
-  const [heartTrigger, setHeartTrigger] = useState(0);
+  const [task1Score, setTask1Score] = useState(0);
+  const [customBurst, setCustomBurst] = useState<{ x: number; y: number; isGold?: boolean } | null>(null);
+  const [isShaking, setIsShaking] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const { isPlaying, toggle } = useBackgroundMusic();
 
@@ -41,11 +46,14 @@ export default function Home() {
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
-  function handleYes() {
-    setConfettiTrigger((t) => t + 1);
-    setHeartTrigger((t) => t + 1);
-    setTimeout(() => setStep("date"), 650);
-  }
+  useEffect(() => {
+    const handleShake = () => {
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 500);
+    };
+    window.addEventListener("romantic-shake", handleShake);
+    return () => window.removeEventListener("romantic-shake", handleShake);
+  }, []);
 
   function handleConfirm() {
     setConfettiTrigger((t) => t + 1);
@@ -53,12 +61,27 @@ export default function Home() {
   }
 
   const screens: Record<FlowStep, React.ReactNode> = {
-    landing: <LandingScreen onYes={handleYes} />,
+    task1: <Task1CatchHearts score={task1Score} />,
+    longMessage: <LongMessageStep onContinue={() => setStep("task2")} />,
+    task2: (
+      <Task2TapHeart
+        onComplete={() => setStep("proposal")}
+        onHeartTap={(x, y) => setCustomBurst({ x, y, isGold: false })}
+      />
+    ),
+    proposal: (
+      <ProposalStep
+        onYes={() => {
+          setConfettiTrigger((t) => t + 1);
+          setStep("date");
+        }}
+      />
+    ),
     date: (
       <DateStep
         value={answers.date}
         onChange={(date) => setAnswers((a) => ({ ...a, date }))}
-        onBack={() => setStep("landing")}
+        onBack={() => setStep("proposal")}
         onNext={() => setStep("place")}
       />
     ),
@@ -97,11 +120,39 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-dvh w-full">
+    <motion.main
+      animate={
+        isShaking
+          ? {
+              x: [-10, 10, -10, 10, -5, 5, -5, 5, 0],
+              y: [-5, 5, -5, 5, -3, 3, -3, 3, 0],
+            }
+          : {}
+      }
+      transition={{ duration: 0.5 }}
+      className="relative min-h-dvh w-full overflow-hidden"
+    >
       <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
       {!isLoading && (
         <>
+          <RomanticCanvas
+            activeGame={step === "task1" ? "task1" : "none"}
+            onTask1HeartCaught={() => {
+              setTask1Score((s) => {
+                const next = s + 1;
+                if (next === 3) {
+                  // Win task 1!
+                  setTimeout(() => {
+                    setStep("longMessage");
+                  }, 800);
+                }
+                return next;
+              });
+            }}
+            customBurstTrigger={customBurst}
+          />
+
           <SettingsBar
             isDark={isDark}
             onToggleTheme={() => setIsDark((d) => !d)}
@@ -113,7 +164,6 @@ export default function Home() {
             trigger={confettiTrigger}
             variant={step === "confirmation" ? "grand" : "soft"}
           />
-          <HeartExplosion trigger={heartTrigger} originX={50} originY={60} />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -128,6 +178,6 @@ export default function Home() {
           </AnimatePresence>
         </>
       )}
-    </main>
+    </motion.main>
   );
 }

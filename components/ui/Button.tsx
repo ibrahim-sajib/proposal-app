@@ -11,12 +11,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-r from-rose-500 to-plum-500 text-white shadow-glow hover:shadow-glow-lg",
+          "bg-gradient-to-r from-[#ff003c] to-[#ff6b8b] text-white shadow-[0_10px_25px_rgba(255,0,60,0.5)] hover:shadow-[0_15px_35px_rgba(255,0,60,0.7)] hover:scale-105 active:scale-95 transition-all duration-300",
         secondary:
-          "glass-card text-plum-600 dark:text-lilac-200 hover:bg-white/70",
-        ghost: "text-plum-500 hover:bg-white/40 dark:hover:bg-white/10",
+          "bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300",
+        ghost: "text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300",
         outline:
-          "border-2 border-rose-400 text-rose-600 dark:text-rose-300 hover:bg-rose-50/60 dark:hover:bg-white/5",
+          "border border-white/40 text-white hover:bg-white/10 transition-all duration-300",
       },
       size: {
         sm: "h-9 px-4 text-sm",

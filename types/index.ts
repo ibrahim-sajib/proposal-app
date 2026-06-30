@@ -1,5 +1,8 @@
 export type FlowStep =
-  | "landing"
+  | "task1"
+  | "longMessage"
+  | "task2"
+  | "proposal"
   | "date"
   | "place"
   | "food"

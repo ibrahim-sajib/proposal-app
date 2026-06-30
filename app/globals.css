@@ -5,6 +5,11 @@
 :root {
   --font-display: "Playfair Display", serif;
   --font-body: "Nunito", sans-serif;
+  --primary-red: #ff003c;
+  --glow-red: #ff3366;
+  --dark-red: #2a0008;
+  --gold: #ffd700;
+  --text-light: #ffffff;
 }
 
 * {
@@ -17,29 +22,38 @@ body {
 }
 
 body {
-  @apply bg-blush-radial text-ink font-body antialiased overflow-x-hidden;
+  background: radial-gradient(circle at center, var(--dark-red) 0%, #000000 100%) !important;
+  color: var(--text-light) !important;
+  @apply font-body antialiased overflow-x-hidden;
 }
 
 .dark body {
-  @apply bg-dusk-gradient text-cream;
+  background: radial-gradient(circle at center, var(--dark-red) 0%, #000000 100%) !important;
+  color: var(--text-light) !important;
 }
 
 ::selection {
-  @apply bg-rose-300/60 text-plum-700;
+  background-color: rgba(255, 0, 60, 0.3);
+  color: #ffffff;
 }
 
 /* Glassmorphism card */
 .glass-card {
-  @apply bg-glass-card backdrop-blur-xl border border-white/40 shadow-glass;
+  background: rgba(255, 0, 60, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 100, 130, 0.3) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 0 40px rgba(255, 0, 60, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05) !important;
 }
 
 .dark .glass-card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  @apply border-white/10;
+  background: rgba(255, 0, 60, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 100, 130, 0.3) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 0 40px rgba(255, 0, 60, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Romantic scrollbar */
@@ -96,4 +110,31 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(38%) sepia(74%) saturate(1872%) hue-rotate(307deg)
     brightness(101%) contrast(101%);
   cursor: pointer;
+}
+
+/* Giant heart style */
+.giant-heart {
+  position: relative;
+  cursor: pointer;
+}
+
+.giant-heart:before,
+.giant-heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: var(--glow-red);
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  box-shadow: 0 0 35px var(--glow-red);
+}
+
+.giant-heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
 }

@@ -58,16 +58,16 @@ export function SummaryStep({ answers, onBack, onConfirm }: SummaryStepProps) {
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.08 }}
-            className="flex items-center gap-4 rounded-2xl bg-white/60 p-4 text-left"
+            className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 text-left"
           >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-rose-100 text-rose-600">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ff003c]/20 text-[#ff3366] border border-[#ff3366]/30">
               <row.icon size={20} />
             </span>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-plum-400">
+              <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
                 {row.label}
               </p>
-              <p className="font-display text-base font-semibold text-plum-600 sm:text-lg">
+              <p className="font-display text-base font-semibold text-white sm:text-lg">
                 {row.value}
               </p>
             </div>

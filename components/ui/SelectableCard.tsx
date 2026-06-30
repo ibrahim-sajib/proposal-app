@@ -33,25 +33,25 @@ export function SelectableCard({
         "relative flex flex-col items-center justify-center gap-2 rounded-3xl p-5 text-center glass-card transition-colors",
         "border-2",
         selected
-          ? "border-rose-500 bg-rose-50/70 shadow-glow"
-          : "border-transparent hover:border-rose-200"
+          ? "border-[#ff3366] bg-[#ff003c]/20 shadow-[0_0_20px_rgba(255,0,60,0.5)] text-white"
+          : "border-transparent hover:border-white/20 text-white/80"
       )}
     >
       {selected && (
         <motion.span
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="absolute -top-2 -right-2 grid h-7 w-7 place-items-center rounded-full bg-rose-500 text-white shadow-glow"
+          className="absolute -top-2 -right-2 grid h-7 w-7 place-items-center rounded-full bg-[#ff003c] text-white shadow-[0_0_10px_#ff3366]"
         >
           <Check size={16} strokeWidth={3} />
         </motion.span>
       )}
       <span className="text-4xl sm:text-5xl">{emoji}</span>
-      <span className="font-display text-base sm:text-lg font-semibold text-plum-600">
+      <span className="font-display text-base sm:text-lg font-semibold text-white">
         {label}
       </span>
       {description && (
-        <span className="text-xs text-plum-400 sm:text-sm">{description}</span>
+        <span className="text-xs text-white/60 sm:text-sm">{description}</span>
       )}
     </motion.button>
   );
