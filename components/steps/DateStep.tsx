@@ -16,7 +16,7 @@ interface DateStepProps {
 export function DateStep({ value, onChange, onBack, onNext }: DateStepProps) {
   return (
     <StepShell
-      title="Let's plan our next beautiful date ❤️"
+      title="Let&apos;s plan our next beautiful date ❤️"
       subtitle="Pick a day to create another unforgettable memory together."
       stepIndex={0}
       totalSteps={5}

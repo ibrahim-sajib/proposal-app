@@ -15,7 +15,7 @@ interface ConfirmationScreenProps {
 
 const MESSAGE = `Yay!! ❤️
 Our date is officially booked!
-I can't wait to spend this beautiful day with you.
+I can&apos;t wait to spend this beautiful day with you.
 Thank you for saying YES.
 I promise to make this date unforgettable.
 See you soon ❤️`;

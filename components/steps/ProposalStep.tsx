@@ -42,7 +42,7 @@ export function ProposalStep({ onYes }: ProposalStepProps) {
 
         <div className="relative mt-4 flex w-full flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10 min-h-[80px]">
           <Button variant="primary" size="lg" onClick={onYes} className="w-56 font-bold text-lg">
-            Yes, I'd love to ❤️
+            Yes, I&apos;d love to ❤️
           </Button>
 
           <DodgingNoButton onEscape={handleEscape} />
