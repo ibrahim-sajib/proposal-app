@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Playfair Display", serif;
+  --font-body: "Nunito", sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-blush-radial text-ink font-body antialiased overflow-x-hidden;
+}
+
+.dark body {
+  @apply bg-dusk-gradient text-cream;
+}
+
+::selection {
+  @apply bg-rose-300/60 text-plum-700;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  @apply bg-glass-card backdrop-blur-xl border border-white/40 shadow-glass;
+}
+
+.dark .glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  @apply border-white/10;
+}
+
+/* Romantic scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-rose-300 rounded-full;
+}
+
+/* Shimmer text */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #6b2d8c 0%,
+    #ff6fa5 25%,
+    #ffd36e 50%,
+    #ff6fa5 75%,
+    #6b2d8c 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #ff6fa5;
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(38%) sepia(74%) saturate(1872%) hue-rotate(307deg)
+    brightness(101%) contrast(101%);
+  cursor: pointer;
+}
