@@ -21,6 +21,7 @@ export function ProposalStep({ onYes }: ProposalStepProps) {
   }
 
   return (
+    
     <div className="relative flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden px-6 py-16 text-center">
       <EscapeToast message={toastMessage} toastKey={toastKey} />
 
