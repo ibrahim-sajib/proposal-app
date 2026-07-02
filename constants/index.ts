@@ -9,6 +9,15 @@ export const NO_ESCAPE_MESSAGES: string[] = [
   "Not happening, cutie 😘",
   "YES is right there 👉",
   "I dodged again 🙈",
+  "Still too slow! 🏎️",
+  "Almost had me! 🫣",
+  "Click YES, it is destiny 😉",
+  "My heart, my rules! 💖",
+  "Nice try, but nope! 🦊",
+  "Error 404: 'No' not found ❌",
+  "You're stuck with me! 🥰",
+  "Saying no is not allowed 🔒",
+  "Give up and click YES! 💕",
 ];
 
 export const PLACE_OPTIONS: PlaceOption[] = [
